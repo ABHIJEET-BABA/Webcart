@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  
+  --spacing-128: 32rem;
+  --spacing-160: 40rem;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-white text-black antialiased;
+    font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1 {
+    @apply text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-[0.9];
+  }
+
+  h2 {
+    @apply text-5xl md:text-7xl font-bold tracking-tighter leading-[0.95];
+  }
+
+  h3 {
+    @apply text-3xl md:text-4xl font-bold tracking-tight;
+  }
+}
+
+@layer utilities {
+  .text-huge {
+    font-size: clamp(4rem, 15vw, 12rem);
+    line-height: 0.85;
+    letter-spacing: -0.05em;
+  }
+  
+  .section-padding {
+    @apply py-8 md:py-12 px-6 md:px-12;
+  }
+
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-25%); }
+  }
+
+  @keyframes scroll-slow {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  @keyframes scroll-slow-reverse {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+  }
+
+  .animate-scroll {
+    animation: scroll 30s linear infinite;
+  }
+
+  .animate-scroll-slow {
+    animation: scroll-slow 100s linear infinite;
+  }
+
+  .animate-scroll-slow-reverse {
+    animation: scroll-slow-reverse 100s linear infinite;
+  }
+
+  .reveal-text {
+    @apply opacity-0 translate-y-8 transition-all duration-1000 ease-out;
+  }
+
+  .reveal-text.active {
+    @apply opacity-100 translate-y-0;
+  }
+}
